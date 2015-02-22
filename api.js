@@ -115,6 +115,7 @@ Api.prototype.sessionRequest = function(data, cb) {
   cb = cb || noop;
   this.getCurrentSession(function(err, session) {
     if (err) return cb(err);
+    if (!session) return cb(null);
     var sessionId = session.mediaSessionId;
     that.reqres.request(extend(data, { mediaSessionId: sessionId } ),
       function(err, response) {
